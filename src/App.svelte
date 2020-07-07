@@ -6,7 +6,6 @@
       let query = window.location.search.substring(1);
       token = query.split("&").map((param) => {
           let [key, value] = param.split("=");
-          console.log(param)
           if (key == "code") {
               return value;
          }
