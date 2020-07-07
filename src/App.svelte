@@ -1,12 +1,22 @@
 <script>
   import { onMount } from "svelte";
   export let date;
+  let token;
 
   onMount(async () => {
     const res = await fetch("/api/date");
     const newDate = await res.text();
     date = newDate;
   });
+  onMount(async () => {
+      let query = window.location.search.substring(0);
+      token = query.split("&").map((param) => {
+          let (key, value) = param.split("=");
+          if (key == "code") {
+              return value;
+         }
+     })
+ })
 </script>
 
 <main>
@@ -19,28 +29,7 @@
     !
   </h2>
   <p>
-    <a
-      href="https://github.com/vercel/vercel/tree/master/examples/svelte"
-      target="_blank"
-      rel="noreferrer noopener">
-      This project
-    </a>
-    is a
-    <a href="https://svelte.dev/">Svelte</a>
-    app with three directories,
-    <code>/public</code>
-    for static assets,
-    <code>/src</code>
-    for components and content, and
-    <code>/api</code>
-    which contains a serverless
-    <a href="https://nodejs.org/en/">Node.js</a>
-    function. See
-    <a href="/api/date">
-      <code>api/date</code>
-      for the Date API with Node.js
-    </a>
-    .
+    <h1>{token}</h1>
   </p>
   <br />
   <h2>The date according to Node.js is:</h2>
