@@ -11,7 +11,7 @@
   onMount(async () => {
       let query = window.location.search.substring(0);
       token = query.split("&").map((param) => {
-          let (key, value) = param.split("=");
+          let [key, value] = param.split("=");
           if (key == "code") {
               return value;
          }
