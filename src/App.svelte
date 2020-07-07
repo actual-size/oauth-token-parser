@@ -3,7 +3,7 @@
   let token;
 
   onMount(async () => {
-      let query = window.location.search.substring(1);
+      let query = window.location.hash.substring(1);
       token = query.split("&").map((param) => {
           let [key, value] = param.split("=");
           if (key == "access_token") {
